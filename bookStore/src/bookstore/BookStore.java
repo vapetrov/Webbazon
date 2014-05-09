@@ -22,6 +22,8 @@ public class BookStore {
         
 
         
+        // here is a test
+        
         System.out.println("=== BOOK STORE!!! ===\n\n");
         
         Sellable myBook = new Book(19.95, "853BA","Mr.Jones","War and Peace");
