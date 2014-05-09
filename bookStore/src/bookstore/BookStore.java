@@ -20,10 +20,13 @@ public class BookStore {
      */
     public static void main(String[] args) {
         
-        System.out.println("Hello world!");
+        System.out.println("=== BOOK STORE!!! ===\n\n");
         
+        Sellable myBook = new Book(19.95, "853BA","Mr.Jones","War and Peace");
         
-
+        System.out.println(((Book) myBook).TITLE);
+        System.out.println(((Book) myBook).AUTHOR);
+        System.out.println(myBook.getPrice());
         
     }
     
