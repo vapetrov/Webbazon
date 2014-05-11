@@ -78,7 +78,7 @@ public class mainGUI extends JFrame {
         
         String[] names = new String[]{"bob", "bill","jill","Juan"};
 
-        JList books = new JList(names); //data has type Object[]
+        JList books = new JList(names);
         books.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         books.setLayoutOrientation(JList.VERTICAL);
         books.setVisibleRowCount(-1);
