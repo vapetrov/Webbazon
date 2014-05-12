@@ -17,11 +17,12 @@ public class imageIconLoader {
     private ImageIcon[] images;
     
     public imageIconLoader(){        
-        images = new ImageIcon[3];
+        images = new ImageIcon[4];
         
         images[0] = new ImageIcon(this.getClass().getResource("images/1.png"));
         images[1] = new ImageIcon(this.getClass().getResource("images/2.png"));
         images[2] = new ImageIcon(this.getClass().getResource("images/3.png"));
+        images[3] = new ImageIcon(this.getClass().getResource("images/4.png"));
     }
     
     public ImageIcon[] getImages(){

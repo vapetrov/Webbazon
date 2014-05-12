@@ -37,7 +37,7 @@ public class mainGUI extends JFrame {
             }
         });
 
-        setTitle("Webazon Bookstore");
+        setTitle("Webbazon Bookstore");
 
         ImageIcon[] icons = new imageIconLoader().getImages();
         
@@ -45,7 +45,9 @@ public class mainGUI extends JFrame {
         horizontal.setLayout(new BoxLayout(horizontal, BoxLayout.Y_AXIS));
         add(horizontal);
 
-        JLabel name = new JLabel("WebAzon Bookstore!", SwingConstants.CENTER);
+        JLabel name = new JLabel("", SwingConstants.CENTER);
+        name.setIcon(icons[3]);
+        
         name.setFont(new Font("Helvetica", 1, 30));
         name.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
