@@ -3,31 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package bookstore;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import javax.swing.ImageIcon;
 
 /**
- * Loads icons so that they can be displayed in the GUI
+ * Loads icons and images so that they can be displayed in the GUI
+ *
  * @author Vassily
  */
 public class imageIconLoader {
-    
+
     private ImageIcon[] images;
-    
-    public imageIconLoader(){        
-        images = new ImageIcon[4];
-        
-        images[0] = new ImageIcon(this.getClass().getResource("images/1.png"));
-        images[1] = new ImageIcon(this.getClass().getResource("images/2.png"));
-        images[2] = new ImageIcon(this.getClass().getResource("images/3.png"));
-        images[3] = new ImageIcon(this.getClass().getResource("images/4.png"));
+
+    public imageIconLoader() throws URISyntaxException, MalformedURLException {
+
+        File resources = new File(getClass().getResource("images").toURI());
+        File[] icons = resources.listFiles();
+
+        images = new ImageIcon[icons.length];
+
+        int count = 0;
+        for (File f : icons) {
+            images[count] = new ImageIcon(f.toURI().toURL());
+            count++;
+        }
+
     }
-    
-    public ImageIcon[] getImages(){
+
+    public ImageIcon[] getImages() {
         return images;
     }
-    
-    
+
 }
