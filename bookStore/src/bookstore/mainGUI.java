@@ -19,8 +19,12 @@ import javax.swing.border.CompoundBorder;
  */
 public class mainGUI extends JFrame {
 
-    public mainGUI() {
+    Inventory books;
+    
+    public mainGUI(Inventory books) {
 
+        this.books = books;
+        
         // Window closer
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -28,7 +32,7 @@ public class mainGUI extends JFrame {
             }
         });
 
-        this.setMinimumSize(new Dimension(457,444));
+        //this.setMinimumSize(new Dimension(457,444));
 
         setTitle("Webbazon Bookstore");
 
@@ -73,26 +77,8 @@ public class mainGUI extends JFrame {
 
         buttonRow.add(Box.createRigidArea(new Dimension(20, 0)));
 
-        String[] names = new String[]{
-            "War of the Worlds",
-            "War and Peace",
-            "To kill a mockingbird",
-            "The Great Gatsby",
-            "A tale of two cities",
-            "The Lord of the Rings"
-        };
-
-        JList books = new JList(names);
-
-        books.setFont(new Font("Helvetica", 3, 14));
-
-        books.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        books.setLayoutOrientation(JList.VERTICAL);
-        books.setVisibleRowCount(-1);
-        JScrollPane listScroller = new JScrollPane(books);
-        listScroller.setPreferredSize(new Dimension(800, 400));
-        listScroller.setBorder(new CompoundBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10), listScroller.getBorder()));
-        horizontal.add(listScroller);
+        bookListPanel scroller = new bookListPanel(books);
+        horizontal.add(scroller.getScroller());
 
         bookStatus book = new bookStatus();
         horizontal.add(book);
@@ -101,12 +87,9 @@ public class mainGUI extends JFrame {
 
     }
 
-    public void componentResized(ComponentEvent e) {
-        System.out.println(this.getSize());
-    }
 
-    public static void make(String[] args) {
-        JFrame f = new mainGUI();
+    public static void make(Inventory inventory) {
+        JFrame f = new mainGUI(inventory);
         f.setVisible(true);
     }
 }

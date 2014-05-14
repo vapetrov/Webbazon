@@ -12,15 +12,14 @@ import java.util.ArrayList;
  * @author Jagjit
  */
 //Class Inventory
-public class Inventory extends InventoryItem
+public class Inventory
 {
         //Private fields.
 	private ArrayList<InventoryItem> items;
         //Constructs new Inventory and uses the superclass's constructor.
         //@param (Book) book
-	public Inventory(Book book)
+	public Inventory()
         {
-            super(book);
             items = new ArrayList<InventoryItem>(); 
         }
         //addItem adds the specified item to the complete InventoryItem list.
@@ -49,7 +48,7 @@ public class Inventory extends InventoryItem
         public ArrayList<InventoryItem> getList()
         {
             //Checks to make sure that items is not empty.
-            while(items.get(0) == null)
+            if(items.get(0) == null)
                 System.out.println("Items list is empty. Please try again!");
             return items;
             

@@ -9,8 +9,9 @@ public class InventoryItem{
     //Postcondition: successfully sets up a Book inventory item. 
     //Precondition: As of now (or until Webbazon decides to sell another item) constructor parameters must contain a book. 
     //@param (Book) book
-    public InventoryItem(Sellable item) {
+    public InventoryItem(Sellable item, int quantity) {
         this.item = item;
+        this.quantity = quantity;
     }
     //setQuantity: sets the quantity of the item to amount.
     //Postcondition: successfully sets quantity to the given amount. 
