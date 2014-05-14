@@ -14,8 +14,9 @@ import java.util.ArrayList;
 public class Inventory extends InventoryItem
 {
 	private ArrayList<InventoryItem> items;
-	public Inventory()
+	public Inventory(Book book)
         {
+            super(book);
             items = new ArrayList<InventoryItem>(); 
         }
         public void addItem(InventoryItem item)
