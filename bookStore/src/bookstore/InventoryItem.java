@@ -1,16 +1,16 @@
 package bookstore;
 //Class Inventory Item is a sellable item that will be available in the inventory
-public class InventoryItem implements Sellable {
+public class InventoryItem{
     //private fields
-    private Book item; 
+    private Sellable item; 
     private int quantity;
 
     //InventoryItem constructor: sets the inventory item to a book. 
     //Postcondition: successfully sets up a Book inventory item. 
     //Precondition: As of now (or until Webbazon decides to sell another item) constructor parameters must contain a book. 
     //@param (Book) book
-    public InventoryItem(Book book) {
-        book = item;
+    public InventoryItem(Sellable item) {
+        this.item = item;
     }
     //setQuantity: sets the quantity of the item to amount.
     //Postcondition: successfully sets quantity to the given amount. 
@@ -24,34 +24,14 @@ public class InventoryItem implements Sellable {
     //Precondition: quantity must be set and initialized before calling this method.
     //@return (int) quantity
     public int getQuantity() {
-        return (int) quantity;
+        return quantity;
     }
     //getItem: returns the Item.
     //Postcondition: returns the item.
     //Precondition: item must be set and initualized before calling this method.
-    //@return (Book) item.
-    public Book getItem() {
-        return (Book) item;
+    //@return item.
+    public Sellable getItem() {
+        return item;
     }
-    //getID: returns the ID number of the item. 
-    //Postcondition: returns the item's ID
-    //Precondition: item must be set and initialized and also must contain an ID number before calling this method.
-    //@return (String) getID()
-    public String getID() {
-        return (String) item.getID();
-    }
-    //getPrice: returns the (double) price. 
-    //Postcondition: returns the item's price.
-    //Precondition: item must be set and initialized and also must contain a price before calling this method.
-    //@return (double) getPrice()
-    public double getPrice() {
-        return (double) item.getPrice();
-    }
-    //getName: returns the (String) name. 
-    //Postcondition: returns the item's name
-    //Precondition: item must be set and initialized and also must contain a name before calling this method.
-    //@return (String) getName()
-    public String getName() {
-        return (String) item.getName();
-    }
+
 }

@@ -22,10 +22,7 @@ public class BookStore {
         
 
         
-        // here is a test
-        
-        System.out.println("=== BOOK STORE!!! ===\n\n");
-        
+             
         mainGUI.make(new String[]{});
         
         

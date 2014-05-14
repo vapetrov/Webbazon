@@ -4,10 +4,12 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.swing.border.CompoundBorder;
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
 
 /**
  * The main GUI. Renders a window that allows a person to add add and sell
@@ -25,6 +27,8 @@ public class mainGUI extends JFrame {
                 System.exit(0);
             }
         });
+
+        this.setMinimumSize(new Dimension(457,444));
 
         setTitle("Webbazon Bookstore");
 
@@ -95,6 +99,10 @@ public class mainGUI extends JFrame {
 
         pack();
 
+    }
+
+    public void componentResized(ComponentEvent e) {
+        System.out.println(this.getSize());
     }
 
     public static void make(String[] args) {
