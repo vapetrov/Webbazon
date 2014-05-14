@@ -37,22 +37,10 @@ public class Inventory extends InventoryItem
         //@param (InventoryItem) item
         public void removeItem(InventoryItem item)
         {
-            int counter = 0;
-            //Searching for item...
-            while(counter<items.size())
-            {
-                InventoryItem testItem = items.get(counter);
-                if(testItem.equals(item))
-                  counter++;
-            }
-            //Exit method if the item is not found
-            if(counter == 0)
-            {
-                if(!(items.get(counter).equals(item)))
-                    return;
-            }
-            //If the item is found, remove it. 
-            items.remove(counter);
+            boolean removed = true;
+            while(removed)
+                removed = items.remove(item);
+                      
          }
         //getList returns the list items as an ArrayList.
         //Postcondition: items is returned. 
