@@ -6,19 +6,8 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
 import javax.swing.border.CompoundBorder;
+import javax.swing.*;
 
 /**
  * The main GUI. Renders a window that allows a person to add add and sell
@@ -40,14 +29,14 @@ public class mainGUI extends JFrame {
         setTitle("Webbazon Bookstore");
 
         ImageIcon[] icons = new imageIconLoader().getImages();
-        
+
         JPanel horizontal = new JPanel();
         horizontal.setLayout(new BoxLayout(horizontal, BoxLayout.Y_AXIS));
         add(horizontal);
 
         JLabel name = new JLabel("", SwingConstants.CENTER);
         name.setIcon(icons[3]);
-        
+
         name.setFont(new Font("Helvetica", 1, 30));
         name.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -99,8 +88,11 @@ public class mainGUI extends JFrame {
         JScrollPane listScroller = new JScrollPane(books);
         listScroller.setPreferredSize(new Dimension(800, 400));
         listScroller.setBorder(new CompoundBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10), listScroller.getBorder()));
-
         horizontal.add(listScroller);
+
+        bookStatus book = new bookStatus();
+        horizontal.add(book);
+
         pack();
 
     }
