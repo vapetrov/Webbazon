@@ -25,8 +25,8 @@ public class BookStore {
         mainInventory.addItem(new InventoryItem(new Book(19.95, "asdf234", "Scott Fitzgerald", "The Great Gatsby"), 7));
         mainInventory.addItem(new InventoryItem(new Book(99.99, "1234abcd", "Leo Tolstoy", "War and Peace"), 23));
         mainInventory.addItem(new InventoryItem(new Book(3.00, "dd4523", "John Steinbeck", "Of Mice and Men"), 23));
+        mainInventory.addItem(new InventoryItem(new Book(34.00, "34564576dgf", "Mr.Webb", "AP Comp. Sci A"), 999));
 
-       
         mainGUI.make(mainInventory);
 
         //another test here

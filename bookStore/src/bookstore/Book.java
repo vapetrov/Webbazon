@@ -40,6 +40,9 @@ public class Book implements Sellable {
         return TITLE;
     }
     
+    public String getCreator(){
+        return AUTHOR;
+    }
     
     
     

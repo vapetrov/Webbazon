@@ -9,6 +9,8 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.CompoundBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  * This class displays the contents of an inventory. It also allows users to select items in the inventory to get more information about them
@@ -18,21 +20,25 @@ public class bookListPanel extends JList {
     
     private Inventory inventory;
     private JScrollPane scroller;
+    private bookStatusPanel toUpdate;
     
-    public bookListPanel(Inventory inventory){
+    public bookListPanel(Inventory inventory, bookStatusPanel toUpdate){
         super();
+        this.toUpdate = toUpdate;
         this.inventory = inventory;
         create();
         scroller = new JScrollPane(this);
         scroller.setPreferredSize(new Dimension(800, 400));
         scroller.setBorder(new CompoundBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10), scroller.getBorder()));
         
+        getSelectionModel().addListSelectionListener(new handleSelection(this));
+        
     }
     
     private void create(){
         setFont(new Font("Helvetica", 3, 14));
 
-        setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         setLayoutOrientation(JList.VERTICAL);
         setVisibleRowCount(-1);
         update();
@@ -65,8 +71,24 @@ public class bookListPanel extends JList {
         
     }
     
+    private void selectBook(ListSelectionEvent e){
+       toUpdate.updateItem(inventory.getList().get(this.getSelectedIndex()));
+    }
     
     
+    // inner class that handles a person clicking on a book in the list
+    private class handleSelection implements ListSelectionListener {
+        
+        bookListPanel current;
+        handleSelection(bookListPanel current){
+            this.current = current;
+        }
+        
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+            current.selectBook(e);
+        }  
+    }
     
     
     

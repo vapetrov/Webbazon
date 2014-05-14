@@ -33,4 +33,12 @@ public interface Sellable {
      */
     String getID();
     
+    /**
+     * Retrieves the name of the person who made this item.
+     * For books, this would be an author.
+     * @return name.
+     */
+    String getCreator();
+    
+    
 }

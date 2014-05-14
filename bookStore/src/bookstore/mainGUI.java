@@ -77,10 +77,11 @@ public class mainGUI extends JFrame {
 
         buttonRow.add(Box.createRigidArea(new Dimension(20, 0)));
 
-        bookListPanel scroller = new bookListPanel(books);
+        
+        bookStatusPanel book = new bookStatusPanel();
+        bookListPanel scroller = new bookListPanel(books, book);
+        
         horizontal.add(scroller.getScroller());
-
-        bookStatus book = new bookStatus();
         horizontal.add(book);
 
         pack();
