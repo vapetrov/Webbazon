@@ -34,5 +34,22 @@ public class InventoryItem{
     public Sellable getItem() {
         return item;
     }
+    public double getPrice(){
+        return item.getPrice();
+    }
+    public String getID(){
+        return item.getID();
+    }
+    public String getName(){
+        return item.getName();
+    }
+    public String getCreator(){
+        return item.getCreator();
+    }
+    public String toString(){
+        return item.toString();
+    }
+ }
+    
 
-}
+
