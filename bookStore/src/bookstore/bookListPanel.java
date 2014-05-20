@@ -1,16 +1,13 @@
 
 package bookstore;
 
-import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.*;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
+import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
 
 /**
  * This class displays the contents of an inventory. It also allows users to select items in the inventory to get more information about them

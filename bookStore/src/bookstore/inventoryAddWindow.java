@@ -1,22 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bookstore;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Box;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.*;
+
 
 /**
+ * A separate window that is used for adding a new book to the list of available
+ * books
  *
  * @author Vassily
  */
@@ -92,9 +85,10 @@ public class inventoryAddWindow extends JFrame implements ActionListener {
 
         this.pack();
         this.setResizable(false);
+        setLocationRelativeTo(null);
     }
-    
-    private void closeWindow(){
+
+    private void closeWindow() {
         setVisible(false);
         clearFields();
     }
@@ -109,15 +103,10 @@ public class inventoryAddWindow extends JFrame implements ActionListener {
     }
 
     private class bookAdder implements ActionListener {
-
         Inventory invent;
-
         public bookAdder(Inventory invent) {
-
             this.invent = invent;
-
         }
-
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println(name.getText());
@@ -125,9 +114,14 @@ public class inventoryAddWindow extends JFrame implements ActionListener {
             root.updateList();
             inventoryAddWindow.this.closeWindow();
         }
-
     }
 
+    /**
+     * Creates a new instance of the window
+     *
+     * @param root The main GUI that the window was created from.
+     * @return the created object.
+     */
     public static inventoryAddWindow make(mainGUI root) {
         inventoryAddWindow window = new inventoryAddWindow(root);
         window.setVisible(false); // not ready to be displayed yet!
@@ -135,6 +129,12 @@ public class inventoryAddWindow extends JFrame implements ActionListener {
 
     }
 
+    /**
+     * Listener that will clear and unhide the window when a button is pressed/
+     * other action is performed
+     *
+     * @param e event from which it happened.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         clearFields();

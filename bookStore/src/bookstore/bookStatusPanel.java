@@ -1,15 +1,10 @@
 package bookstore;
 
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.awt.*;
+import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.TitledBorder;
+
 
 /**
  * A helper class for maintaining the JPanel that displays information on books
@@ -59,6 +54,11 @@ public class bookStatusPanel extends JPanel {
         updateSize();
     }
 
+    /**
+     * Sets new values for the amount of books sold and revenue.
+     * @param sold Number of books sold.
+     * @param revenue Total amount of money taken in.
+     */
     public void updateTotal(int sold, double revenue) {
         totalBook.removeAll();
         totalBook.add(new JLabel("Books sold: " + sold));

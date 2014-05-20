@@ -1,15 +1,9 @@
 package bookstore;
 
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Insets;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
-import javax.swing.border.CompoundBorder;
 
 /**
  * The main GUI. Renders a window that allows a person to add add and sell
@@ -24,6 +18,8 @@ public class mainGUI extends JFrame {
 
     public mainGUI(Inventory books) {
 
+        
+        setLocationRelativeTo(null);
         this.books = books;
         bookStatusPanel book = new bookStatusPanel();
         scroller = new bookListPanel(books, book);
@@ -91,17 +87,31 @@ public class mainGUI extends JFrame {
         horizontal.add(book);
 
         pack();
+        setLocationRelativeTo(null);
 
     }
 
+    
+    /**
+     * Obtains the inventory used by this GUI
+     * @return 
+     */
     public Inventory getInventory() {
         return books;
     }
     
+    
+    /**
+     * Updates the list of books to reflect the state of the Inventory.
+     */
     public void updateList(){
         scroller.update();
     }
 
+    /**
+     * Creates an instance of the GUI.
+     * @param inventory The inventory that will be displayed.
+     */
     public static void make(final Inventory inventory) {
 
         SwingUtilities.invokeLater(new Runnable() {
