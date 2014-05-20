@@ -59,7 +59,7 @@ public class bookListPanel extends JList {
             names.add(s.getItem().getName());
         }
 
-        this.setListData(names.toArray());
+        this.setListData(names.toArray(new String[]{}));
 
     }
 

@@ -40,6 +40,12 @@ public class Book implements Sellable {
         return AUTHOR;
     }
     
+    @Override
+    public String toString(){
+        return TITLE+" by: "+AUTHOR;
+        
+    }
+    
     
     
     

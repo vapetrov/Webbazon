@@ -16,7 +16,9 @@ public class mainGUI extends JFrame {
 
     Inventory books;
     bookListPanel scroller;
-
+    addWindow adder;
+    
+    
     public mainGUI(Inventory books) {
 
         
@@ -72,6 +74,10 @@ public class mainGUI extends JFrame {
         add.setMargin(new Insets(5, 5, 5, 5));
         buttonRow.add(add);
 
+        adder = addWindow.make(this);
+        add.addActionListener(adder);
+        
+        
         buttonRow.add(Box.createRigidArea(new Dimension(30, 0)));
 
         JButton sell = new JButton("Sell items");
@@ -107,6 +113,7 @@ public class mainGUI extends JFrame {
      */
     public void updateList(){
         scroller.update();
+        adder.update();
     }
 
     /**

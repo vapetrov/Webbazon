@@ -46,9 +46,15 @@ public class InventoryItem{
     public String getCreator(){
         return item.getCreator();
     }
+    
+    
+    @Override
     public String toString(){
         return item.toString();
     }
+    
+    
+    
  }
     
 
