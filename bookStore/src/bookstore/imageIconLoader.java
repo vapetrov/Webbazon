@@ -28,7 +28,6 @@ public class imageIconLoader {
 
             if (input == null) {
                 notDone = false;
-                System.out.println("good");
             } else {
                 lister.add(new ImageIcon(reader(input)));
             }

@@ -109,7 +109,6 @@ public class inventoryAddWindow extends JFrame implements ActionListener {
         }
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println(name.getText());
             invent.addNewBook(Double.parseDouble(price.getText()), isbn.getText(), author.getText(), name.getText(), Integer.parseInt(quantity.getText()));
             root.updateList();
             inventoryAddWindow.this.closeWindow();
