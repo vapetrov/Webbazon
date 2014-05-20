@@ -5,6 +5,8 @@
  */
 package bookstore;
 
+import bookstore.GUI.mainGUI;
+
 /**
  *
  * @author Vassily and Jajgit

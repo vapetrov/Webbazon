@@ -1,5 +1,6 @@
-package bookstore;
+package bookstore.GUI;
 
+import bookstore.Inventory;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -60,7 +61,7 @@ public class mainGUI extends JFrame {
         buttonRow.add(inventory);
         
         // adds inventory sub-menu. Only 1 is ever created.
-        inventory.addActionListener(inventoryAddWindow.make(this));
+        inventory.addActionListener(inventoryWindow.make(this));
  
         
         

@@ -1,5 +1,5 @@
 
-package bookstore;
+package bookstore.GUI;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

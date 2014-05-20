@@ -1,5 +1,7 @@
-package bookstore;
 
+package bookstore.GUI;
+
+import bookstore.InventoryItem;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;

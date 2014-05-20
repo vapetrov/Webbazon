@@ -1,6 +1,7 @@
 
-package bookstore;
+package bookstore.GUI;
 
+import bookstore.Inventory;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +14,7 @@ import javax.swing.*;
  *
  * @author Vassily
  */
-public class inventoryAddWindow extends JFrame implements ActionListener {
+public class inventoryWindow extends JFrame implements ActionListener {
 
     private mainGUI root;
 
@@ -23,7 +24,7 @@ public class inventoryAddWindow extends JFrame implements ActionListener {
     final JTextField name = new JTextField();
     final JTextField quantity = new JTextField();
 
-    public inventoryAddWindow(mainGUI root) {
+    public inventoryWindow(mainGUI root) {
         this.root = root;
 
         setTitle("Add a new book");
@@ -111,7 +112,7 @@ public class inventoryAddWindow extends JFrame implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             invent.addNewBook(Double.parseDouble(price.getText()), isbn.getText(), author.getText(), name.getText(), Integer.parseInt(quantity.getText()));
             root.updateList();
-            inventoryAddWindow.this.closeWindow();
+            inventoryWindow.this.closeWindow();
         }
     }
 
@@ -121,8 +122,8 @@ public class inventoryAddWindow extends JFrame implements ActionListener {
      * @param root The main GUI that the window was created from.
      * @return the created object.
      */
-    public static inventoryAddWindow make(mainGUI root) {
-        inventoryAddWindow window = new inventoryAddWindow(root);
+    public static inventoryWindow make(mainGUI root) {
+        inventoryWindow window = new inventoryWindow(root);
         window.setVisible(false); // not ready to be displayed yet!
         return window;
 
