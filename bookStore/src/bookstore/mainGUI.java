@@ -20,11 +20,14 @@ import javax.swing.border.CompoundBorder;
 public class mainGUI extends JFrame {
 
     Inventory books;
-    
+    bookListPanel scroller;
+
     public mainGUI(Inventory books) {
 
         this.books = books;
-        
+        bookStatusPanel book = new bookStatusPanel();
+        scroller = new bookListPanel(books, book);
+
         // Window closer
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -33,7 +36,6 @@ public class mainGUI extends JFrame {
         });
 
         //this.setMinimumSize(new Dimension(457,444));
-
         setTitle("Webbazon Bookstore");
 
         ImageIcon[] icons = new imageIconLoader().getImages();
@@ -60,7 +62,12 @@ public class mainGUI extends JFrame {
         inventory.setIcon(icons[0]);
         inventory.setMargin(new Insets(5, 5, 5, 5));
         buttonRow.add(inventory);
-
+        
+        // adds inventory sub-menu. Only 1 is ever created.
+        inventory.addActionListener(inventoryAddWindow.make(this));
+ 
+        
+        
         buttonRow.add(Box.createHorizontalGlue());
 
         JButton add = new JButton("Add items");
@@ -78,9 +85,8 @@ public class mainGUI extends JFrame {
         buttonRow.add(Box.createRigidArea(new Dimension(20, 0)));
 
         
-        bookStatusPanel book = new bookStatusPanel();
-        bookListPanel scroller = new bookListPanel(books, book);
         
+
         horizontal.add(scroller.getScroller());
         horizontal.add(book);
 
@@ -88,9 +94,22 @@ public class mainGUI extends JFrame {
 
     }
 
+    public Inventory getInventory() {
+        return books;
+    }
+    
+    public void updateList(){
+        scroller.update();
+    }
 
-    public static void make(Inventory inventory) {
-        JFrame f = new mainGUI(inventory);
-        f.setVisible(true);
+    public static void make(final Inventory inventory) {
+
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                JFrame f = new mainGUI(inventory);
+                f.setVisible(true);
+
+            }
+        });
     }
 }

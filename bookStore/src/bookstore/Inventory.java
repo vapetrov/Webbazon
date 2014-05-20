@@ -53,6 +53,14 @@ public class Inventory
             return items;
             
         }
+        
+        public void addNewBook(double cost, String isbn, String author, String title, int quantity){
+            
+            Sellable Item = new Book(cost,isbn,author,title);
+            InventoryItem inv = new InventoryItem(Item, quantity);
+            addItem(inv);
+            
+        }
                 
 }
 
