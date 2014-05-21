@@ -21,7 +21,6 @@ public class mainGUI extends JFrame {
     
     public mainGUI(Inventory books) {
 
-        
         setLocationRelativeTo(null);
         this.books = books;
         bookStatusPanel book = new bookStatusPanel();

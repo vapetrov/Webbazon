@@ -50,6 +50,13 @@ public class Inventory
             
         }
         
+        public InventoryItem get(Object o){
+            if(o != null && items.indexOf(o) >= 0){
+                return items.get(items.indexOf(o));
+            }
+            return null;
+        }
+        
         public void addNewBook(double cost, String isbn, String author, String title, int quantity){
             
             Sellable Item = new Book(cost,isbn,author,title);

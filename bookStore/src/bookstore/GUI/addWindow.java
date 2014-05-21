@@ -1,18 +1,20 @@
 package bookstore.GUI;
 
 import bookstore.Inventory;
+import bookstore.InventoryItem;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.SwingConstants;
 
 /**
  * A separate window for adding more books of the same type to the inventory
@@ -24,9 +26,14 @@ public class addWindow extends JFrame implements ActionListener {
     private mainGUI root;
     private JComboBox books;
     private JSpinner number;
-
+    private JLabel quantity;
+    
     public addWindow(mainGUI root) {
         this.root = root;
+
+        JPanel content = new JPanel();
+        content.setBorder(BorderFactory.createEmptyBorder(10, 5, 10, 5));
+        setContentPane(content);
 
         setTitle("Add more books");
 
@@ -36,13 +43,17 @@ public class addWindow extends JFrame implements ActionListener {
         GridBagConstraints bag = new GridBagConstraints();
         bag.insets = new Insets(5, 5, 5, 5);
 
+        bag.ipadx = 30;
         bag.gridwidth = 2;
         bag.gridx = 0;
         books = new JComboBox(root.getInventory().getList().toArray());
         add(books, bag);
-
+        books.addActionListener(new amountUpdater());
+        
+        bag.ipadx = 0;
         bag.gridy = 2;
-        add(new JLabel("Current books: --"), bag);
+        quantity = new JLabel("");
+        add(quantity, bag);
 
         bag.gridwidth = 1;
         bag.gridy = 3;
@@ -66,7 +77,8 @@ public class addWindow extends JFrame implements ActionListener {
         adder.addActionListener(new addWindow.amountAdder(root.getInventory()));
 
         this.pack();
-        //this.setResizable(false);
+        updateAmount();
+        this.setResizable(false);
         setLocationRelativeTo(null);
     }
 
@@ -91,21 +103,42 @@ public class addWindow extends JFrame implements ActionListener {
         number.setValue(0);
     }
 
+    private void updateAmount(){
+        String val = "--";
+        if(root.getInventory().get(books.getSelectedItem()) != null){
+            val = ""+root.getInventory().get(books.getSelectedItem()).getQuantity();
+        }
+        quantity.setText("Current books: "+val);
+    }
+
+    
+    private class amountUpdater implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            addWindow.this.updateAmount();
+        }
+        
+        
+        
+    }
     private class amountAdder implements ActionListener {
-
         Inventory invent;
-
         public amountAdder(Inventory invent) {
             this.invent = invent;
         }
-
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            InventoryItem item = invent.get(books.getSelectedItem());
+            if(item != null){
+                item.setQuantity(item.getQuantity() + Integer.parseInt(number.getValue().toString()));
+            }
             root.updateList();
             addWindow.this.closeWindow();
         }
     }
+    
+    
+    
 
     /**
      * Creates a new instance of the window
