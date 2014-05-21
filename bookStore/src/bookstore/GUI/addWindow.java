@@ -1,20 +1,11 @@
 package bookstore.GUI;
 
-import bookstore.Inventory;
-import bookstore.InventoryItem;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import bookstore.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
+import javax.swing.*;
+
 
 /**
  * A separate window for adding more books of the same type to the inventory
@@ -27,7 +18,7 @@ public class addWindow extends JFrame implements ActionListener {
     private JComboBox books;
     private JSpinner number;
     private JLabel quantity;
-    
+
     public addWindow(mainGUI root) {
         this.root = root;
 
@@ -49,7 +40,7 @@ public class addWindow extends JFrame implements ActionListener {
         books = new JComboBox(root.getInventory().getList().toArray());
         add(books, bag);
         books.addActionListener(new amountUpdater());
-        
+
         bag.ipadx = 0;
         bag.gridy = 2;
         quantity = new JLabel("");
@@ -103,42 +94,41 @@ public class addWindow extends JFrame implements ActionListener {
         number.setValue(0);
     }
 
-    private void updateAmount(){
+    private void updateAmount() {
         String val = "--";
-        if(root.getInventory().get(books.getSelectedItem()) != null){
-            val = ""+root.getInventory().get(books.getSelectedItem()).getQuantity();
+        if (root.getInventory().get(books.getSelectedItem()) != null) {
+            val = "" + root.getInventory().get(books.getSelectedItem()).getQuantity();
         }
-        quantity.setText("Current books: "+val);
+        quantity.setText("Current books: " + val);
     }
 
-    
-    private class amountUpdater implements ActionListener{
+    private class amountUpdater implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
             addWindow.this.updateAmount();
         }
-        
-        
-        
+
     }
+
     private class amountAdder implements ActionListener {
+
         Inventory invent;
+
         public amountAdder(Inventory invent) {
             this.invent = invent;
         }
+
         @Override
         public void actionPerformed(ActionEvent e) {
             InventoryItem item = invent.get(books.getSelectedItem());
-            if(item != null){
+            if (item != null) {
                 item.setQuantity(item.getQuantity() + Integer.parseInt(number.getValue().toString()));
             }
             root.updateList();
             addWindow.this.closeWindow();
         }
     }
-    
-    
-    
 
     /**
      * Creates a new instance of the window

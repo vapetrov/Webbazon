@@ -1,4 +1,3 @@
-
 package bookstore.GUI;
 
 import bookstore.InventoryItem;
@@ -6,7 +5,6 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.TitledBorder;
-
 
 /**
  * A helper class for maintaining the JPanel that displays information on books
@@ -51,13 +49,13 @@ public class bookStatusPanel extends JPanel {
             selectedBook.add(new JLabel("cost: --"));
         }
 
-        
         this.updateUI();
         updateSize();
     }
 
     /**
      * Sets new values for the amount of books sold and revenue.
+     *
      * @param sold Number of books sold.
      * @param revenue Total amount of money taken in.
      */
@@ -90,9 +88,8 @@ public class bookStatusPanel extends JPanel {
             ((JComponent) e).setBorder(BorderFactory.createEmptyBorder(1, 5, 1, 5));
         }
 
-        
         updateItem(null);
-        updateTotal(0,0.0);
+        updateTotal(0, 0.0);
         updateSize();
 
     }

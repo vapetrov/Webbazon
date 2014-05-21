@@ -1,10 +1,7 @@
-
 package bookstore.GUI;
-
 
 import bookstore.Inventory;
 import bookstore.InventoryItem;
-
 
 import java.awt.*;
 import java.util.ArrayList;

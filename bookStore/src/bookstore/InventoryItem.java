@@ -1,8 +1,10 @@
 package bookstore;
 //Class Inventory Item is a sellable item that will be available in the inventory
-public class InventoryItem{
+
+public class InventoryItem {
+
     //private fields
-    private Sellable item; 
+    private Sellable item;
     private int quantity;
 
     //InventoryItem constructor: sets the inventory item to a book. 
@@ -13,6 +15,7 @@ public class InventoryItem{
         this.item = item;
         this.quantity = quantity;
     }
+
     //setQuantity: sets the quantity of the item to amount.
     //Postcondition: successfully sets quantity to the given amount. 
     //Precondition: amount must contain a paramater (int). 
@@ -20,6 +23,7 @@ public class InventoryItem{
     public void setQuantity(int amount) {
         quantity = amount;
     }
+
     //getQuantity: returns the quantity. 
     //Postcondition: returns quantity.
     //Precondition: quantity must be set and initialized before calling this method.
@@ -27,6 +31,7 @@ public class InventoryItem{
     public int getQuantity() {
         return quantity;
     }
+
     //getItem: returns the Item.
     //Postcondition: returns the item.
     //Precondition: item must be set and initualized before calling this method.
@@ -34,28 +39,26 @@ public class InventoryItem{
     public Sellable getItem() {
         return item;
     }
-    public double getPrice(){
+
+    public double getPrice() {
         return item.getPrice();
     }
-    public String getID(){
+
+    public String getID() {
         return item.getID();
     }
-    public String getName(){
+
+    public String getName() {
         return item.getName();
     }
-    public String getCreator(){
+
+    public String getCreator() {
         return item.getCreator();
     }
-    
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return item.toString();
     }
-    
-    
-    
- }
-    
 
-
+}

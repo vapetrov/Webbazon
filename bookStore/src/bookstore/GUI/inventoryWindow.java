@@ -1,4 +1,3 @@
-
 package bookstore.GUI;
 
 import bookstore.Inventory;
@@ -6,7 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-
 
 /**
  * A separate window that is used for adding a new book to the list of available
@@ -104,10 +102,13 @@ public class inventoryWindow extends JFrame implements ActionListener {
     }
 
     private class bookAdder implements ActionListener {
+
         Inventory invent;
+
         public bookAdder(Inventory invent) {
             this.invent = invent;
         }
+
         @Override
         public void actionPerformed(ActionEvent e) {
             invent.addNewBook(Double.parseDouble(price.getText()), isbn.getText(), author.getText(), name.getText(), Integer.parseInt(quantity.getText()));

@@ -1,4 +1,3 @@
-
 package bookstore.GUI;
 
 import java.io.ByteArrayOutputStream;

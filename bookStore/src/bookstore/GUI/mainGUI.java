@@ -17,8 +17,7 @@ public class mainGUI extends JFrame {
     Inventory books;
     bookListPanel scroller;
     addWindow adder;
-    
-    
+
     public mainGUI(Inventory books) {
 
         setLocationRelativeTo(null);
@@ -60,12 +59,10 @@ public class mainGUI extends JFrame {
         inventory.setIcon(icons[0]);
         inventory.setMargin(new Insets(5, 5, 5, 5));
         buttonRow.add(inventory);
-        
+
         // adds inventory sub-menu. Only 1 is ever created.
         inventory.addActionListener(inventoryWindow.make(this));
- 
-        
-        
+
         buttonRow.add(Box.createHorizontalGlue());
 
         JButton add = new JButton("Add items");
@@ -75,8 +72,7 @@ public class mainGUI extends JFrame {
 
         adder = addWindow.make(this);
         add.addActionListener(adder);
-        
-        
+
         buttonRow.add(Box.createRigidArea(new Dimension(30, 0)));
 
         JButton sell = new JButton("Sell items");
@@ -86,9 +82,6 @@ public class mainGUI extends JFrame {
 
         buttonRow.add(Box.createRigidArea(new Dimension(20, 0)));
 
-        
-        
-
         horizontal.add(scroller.getScroller());
         horizontal.add(book);
 
@@ -97,26 +90,26 @@ public class mainGUI extends JFrame {
 
     }
 
-    
     /**
      * Obtains the inventory used by this GUI
-     * @return 
+     *
+     * @return
      */
     public Inventory getInventory() {
         return books;
     }
-    
-    
+
     /**
      * Updates the list of books to reflect the state of the Inventory.
      */
-    public void updateList(){
+    public void updateList() {
         scroller.update();
         adder.update();
     }
 
     /**
      * Creates an instance of the GUI.
+     *
      * @param inventory The inventory that will be displayed.
      */
     public static void make(final Inventory inventory) {
