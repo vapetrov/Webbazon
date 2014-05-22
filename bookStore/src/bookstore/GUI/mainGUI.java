@@ -80,6 +80,8 @@ public class mainGUI extends JFrame {
         sell.setMargin(new Insets(5, 5, 5, 5));
         buttonRow.add(sell);
 
+        sell.addActionListener(new sellWindow(this));
+        
         buttonRow.add(Box.createRigidArea(new Dimension(20, 0)));
 
         horizontal.add(scroller.getScroller());
