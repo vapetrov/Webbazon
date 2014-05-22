@@ -57,7 +57,6 @@ public class sellWindow extends JFrame implements ActionListener {
         for (bookElement book : entries) {
             remove(book);
         }
-        System.out.println("added");
         adder.addNew();
 
     }
@@ -118,7 +117,7 @@ public class sellWindow extends JFrame implements ActionListener {
             bookElement newOne = new bookElement();
             entries.add(newOne);
             sellWindow.this.add(newOne);
-            sellWindow.this.update();
+            newOne.update(sellWindow.this.root.getInventory().getList().toArray());
             sellWindow.this.pack();
 
         }
