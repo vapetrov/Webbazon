@@ -17,6 +17,7 @@ public class mainGUI extends JFrame {
     Inventory books;
     bookListPanel scroller;
     addWindow adder;
+    sellWindow seller;
 
     public mainGUI(Inventory books) {
 
@@ -80,7 +81,8 @@ public class mainGUI extends JFrame {
         sell.setMargin(new Insets(5, 5, 5, 5));
         buttonRow.add(sell);
 
-        sell.addActionListener(new sellWindow(this));
+        seller = new sellWindow(this);
+        sell.addActionListener(seller);
         
         buttonRow.add(Box.createRigidArea(new Dimension(20, 0)));
 
@@ -107,6 +109,7 @@ public class mainGUI extends JFrame {
     public void updateList() {
         scroller.update();
         adder.update();
+        seller.update();
     }
 
     /**
