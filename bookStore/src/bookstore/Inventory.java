@@ -23,29 +23,37 @@ public class Inventory {
     //Precondition: item must be occupied
     //@param (InventoryItem) item
     public void addItem(InventoryItem item) {
+
+        for (InventoryItem single : items) {
+            if (single.getID().equalsIgnoreCase(item.getID()) || single.getName().equalsIgnoreCase(item.getName())) {
+                throw new IllegalArgumentException("item already exists");
+            }
+        }
+
         items.add(item);
-        if(items.size() >= 2)
-        {
+        if (items.size() >= 2) {
             items = selectionSort(items);
         }
     }
-public ArrayList<InventoryItem> selectionSort(ArrayList<InventoryItem> data){
-  int lenD = data.size();
-  int j = 0;
-  InventoryItem tmp = null;
-  for(int i=0;i<lenD;i++){
-    j = i;
-    for(int k = i;k<lenD;k++){
-      if(data.get(j).getID().compareTo(data.get(k).getID()) < 0){
-        j = k;
-      }
+
+    public ArrayList<InventoryItem> selectionSort(ArrayList<InventoryItem> data) {
+        int lenD = data.size();
+        int j = 0;
+        InventoryItem tmp = null;
+        for (int i = 0; i < lenD; i++) {
+            j = i;
+            for (int k = i; k < lenD; k++) {
+                if (data.get(j).getID().compareTo(data.get(k).getID()) > 0) {
+                    j = k;
+                }
+            }
+            tmp = data.get(i);
+            data.set(i, data.get(j));
+            data.set(j, tmp);
+        }
+        return data;
     }
-    tmp = data.get(i);
-    data.set(i, data.get(j));      
-    data.set(j, tmp);
-  }
-  return data;
-}
+
     //removeItem removes the specified item from the complete InventoryItem list.
     //Postcondition: item is removed from items.
     //Precondition: item must be occupied.

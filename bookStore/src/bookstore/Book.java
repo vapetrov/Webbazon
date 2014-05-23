@@ -14,6 +14,15 @@ public class Book implements Sellable {
     public final String TITLE;
 
     public Book(double cost, String isbn, String author, String title) {
+        
+   
+        
+        if (cost <= 0)
+            throw new IllegalArgumentException("Cost has to be more than 0");
+        
+        if (isbn.equals("") || author.equals("") || title.equals(""))
+            throw new IllegalArgumentException("Fields cannot be blank");
+        
         this.cost = cost;
         ISBN = isbn;
         AUTHOR = author;

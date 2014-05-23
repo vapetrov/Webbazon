@@ -111,7 +111,33 @@ public class inventoryWindow extends JFrame implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            invent.addNewBook(Double.parseDouble(price.getText()), isbn.getText(), author.getText(), name.getText(), Integer.parseInt(quantity.getText()));
+            String message = "";
+            
+            try{
+                Double.parseDouble(price.getText());
+            }catch(NumberFormatException ex){
+                message = "price must be a number";
+            }
+            try{
+                Integer.parseInt(quantity.getText());
+            }catch(NumberFormatException ex){
+                message = "quantity must be an integer";
+            }
+            
+            try{
+                invent.addNewBook(Double.parseDouble(price.getText()), isbn.getText(), author.getText(), name.getText(), Integer.parseInt(quantity.getText()));
+            }catch(NumberFormatException ex){
+                // do nothing, numberFromat is already caught above. 
+            }catch(IllegalArgumentException ex){
+                message = ex.getMessage();
+            }
+
+            if(!message.equals("")){
+                JOptionPane.showMessageDialog(inventoryWindow.this,message,"book adding error",JOptionPane.ERROR_MESSAGE);
+                inventoryWindow.this.clearFields();
+                return;
+            }
+            
             root.updateList();
             inventoryWindow.this.closeWindow();
         }

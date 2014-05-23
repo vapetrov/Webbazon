@@ -12,6 +12,10 @@ public class InventoryItem {
     //Precondition: As of now (or until Webbazon decides to sell another item) constructor parameters must contain a book. 
     //@param (Book) book
     public InventoryItem(Sellable item, int quantity) {
+        
+        if(quantity <= 0)
+            throw new IllegalArgumentException("quantity has to be more than 0");
+        
         this.item = item;
         this.quantity = quantity;
     }
