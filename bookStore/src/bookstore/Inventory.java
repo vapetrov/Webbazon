@@ -24,8 +24,28 @@ public class Inventory {
     //@param (InventoryItem) item
     public void addItem(InventoryItem item) {
         items.add(item);
+        if(items.size() >= 2)
+        {
+            items = selectionSort(items);
+        }
     }
-
+public ArrayList<InventoryItem> selectionSort(ArrayList<InventoryItem> data){
+  int lenD = data.size();
+  int j = 0;
+  InventoryItem tmp = null;
+  for(int i=0;i<lenD;i++){
+    j = i;
+    for(int k = i;k<lenD;k++){
+      if(data.get(j).getID().compareTo(data.get(k).getID()) < 0){
+        j = k;
+      }
+    }
+    tmp = data.get(i);
+    data.set(i, data.get(j));      
+    data.set(j, tmp);
+  }
+  return data;
+}
     //removeItem removes the specified item from the complete InventoryItem list.
     //Postcondition: item is removed from items.
     //Precondition: item must be occupied.
