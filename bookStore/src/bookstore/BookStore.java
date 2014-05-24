@@ -5,6 +5,7 @@
  */
 package bookstore;
 
+import bookstore.GUI.billWindow;
 import bookstore.GUI.mainGUI;
 
 /**
@@ -31,14 +32,19 @@ public class BookStore {
 
         mainGUI.make(mainInventory);
 
-        /*another test here
-         Sellable myBook = new Book(19.95, "853BA", "Mr.Jones", "War and Peace");
+        
+        /*
+        Bill bill = new Bill("Bob Jr.");
 
-         System.out.println(((Book) myBook).TITLE);
-         System.out.println(((Book) myBook).AUTHOR);
-         System.out.println(myBook.getPrice());
-         //System.out.println("Hello World!!!");
-         */
+        bill.addItem(new InventoryItem(new Book(12.99, "234234DF", "J.K. Rowling", "Harry Potter"), 12));
+        bill.addItem(new InventoryItem(new Book(19.95, "asdf234", "Scott Fitzgerald", "The Great Gatsby"), 14));
+        bill.addItem(new InventoryItem(new Book(99.99, "1234abcd", "Leo Tolstoy", "War and Peace"), 16));
+        bill.addItem(new InventoryItem(new Book(3.00, "dd4523", "John Steinbeck", "Of Mice and Men"), 18));
+        bill.addItem(new InventoryItem(new Book(34.00, "34564576dgf", "Mr.Webb", "AP Comp. Sci A"), 999));
+        
+        billWindow window = new billWindow(bill);
+        window.setVisible(true);
+        */
     }
 
 }

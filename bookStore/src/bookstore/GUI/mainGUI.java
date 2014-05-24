@@ -21,6 +21,8 @@ public class mainGUI extends JFrame {
 
     public mainGUI(Inventory books) {
 
+        
+        ImageIcon[] icons = new imageIconLoader().getImages();
         setLocationRelativeTo(null);
         this.books = books;
         bookStatusPanel book = new bookStatusPanel();
@@ -36,7 +38,7 @@ public class mainGUI extends JFrame {
         //this.setMinimumSize(new Dimension(457,444));
         setTitle("Webbazon Bookstore");
 
-        ImageIcon[] icons = new imageIconLoader().getImages();
+        
 
         JPanel horizontal = new JPanel();
         horizontal.setLayout(new BoxLayout(horizontal, BoxLayout.Y_AXIS));
@@ -102,6 +104,8 @@ public class mainGUI extends JFrame {
     public Inventory getInventory() {
         return books;
     }
+    
+  
 
     /**
      * Updates the list of books to reflect the state of the Inventory.

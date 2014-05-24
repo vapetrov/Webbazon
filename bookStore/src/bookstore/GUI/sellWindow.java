@@ -1,5 +1,7 @@
 package bookstore.GUI;
 
+import bookstore.Bill;
+import bookstore.InventoryItem;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +19,7 @@ public class sellWindow extends JFrame implements ActionListener {
     private mainGUI root;
     private ArrayList<bookElement> entries = new ArrayList<bookElement>();
     private elementAdder adder;
+    private JTextField customer = new JTextField();
 
     public sellWindow(mainGUI root) {
         this.root = root;
@@ -29,18 +32,23 @@ public class sellWindow extends JFrame implements ActionListener {
         JPanel buttons = new JPanel();
         buttons.setLayout(new BoxLayout(buttons, BoxLayout.X_AXIS));
         JButton add = new JButton("add more");
-        //add.setAlignmentX(Component.CENTER_ALIGNMENT);
         add.addActionListener(adder);
         buttons.add(add);
         buttons.add(Box.createRigidArea(new Dimension(20, 10)));
-        buttons.add(new JButton("Sell"));
+        JButton sell = new JButton("Sell");
+        sell.addActionListener(new seller());
+        buttons.add(sell);
         buttons.setBorder(BorderFactory.createEmptyBorder(10, 5, 5, 5));
 
         add(buttons);
+        
+        JPanel cust = new JPanel();
+        cust.add(new JLabel("Customer: "));
+        cust.add(customer);
+        customer.setPreferredSize(new Dimension(150, customer.getPreferredSize().height));
+        add(cust);
         add(Box.createHorizontalGlue());
-        //adder.addNew();
 
-        //add(main);
         this.setResizable(false);
 
         pack();
@@ -68,9 +76,32 @@ public class sellWindow extends JFrame implements ActionListener {
         }
     }
 
+    private class seller implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            final Bill bill = new Bill(customer.getText());
+            for (bookElement entry : entries) {
+                InventoryItem sellItem = new InventoryItem(((InventoryItem) entry.bookList.getSelectedItem()).getItem(), (int) entry.amount.getValue());
+                bill.addItem(sellItem);
+            }
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    JFrame f = new billWindow(bill);
+                    f.setVisible(true);
+                }
+            });
+            
+            clearFields();
+            sellWindow.this.setVisible(false);
+        }
+
+    }
+
     private class bookElement extends JPanel implements ActionListener {
 
         JComboBox bookList;
+        JSpinner amount;
 
         public bookElement() {
 
@@ -81,7 +112,7 @@ public class sellWindow extends JFrame implements ActionListener {
             hold.gridx = 0;
             add(bookList, hold);
             hold.gridx = 1;
-            JSpinner amount = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
+            amount = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
             amount.setPreferredSize(new Dimension(45, amount.getPreferredSize().height + 4));
             add(amount, hold);
             hold.gridx = 2;

@@ -14,24 +14,26 @@ import java.util.ArrayList;
 //class Bill
 public class Bill extends Inventory {
 
-    //Private fields
-    private ArrayList<InventoryItem> inventoryList;
+    public final String customer;
 
-    //Bill Constructor
-    //Postcondition: a new bill will be created.
-    //Precondition: inventoryList must already be made.
-    public Bill() {
+    /**
+     * Postcondition: a new bill will be created.
+     * Precondition: super.getList() must already be made.
+     * @param customer Name of the customer.
+     */  
+    public Bill(String customer) {
         super();
-        inventoryList = super.getList();
+        this.customer = customer;
+ 
     }
 
     //getTotalCost returns the total bill for the customer.
     //Postcondition: totalCost is returned
-    //Precondition: inventoryList must be occupied.
+    //Precondition: super.getList() must be occupied.
     //@return totalCost
     public double getTotalCost() {
         double totalCost = 0;
-        for (InventoryItem tempItem : inventoryList) {
+        for (InventoryItem tempItem : super.getList()) {
             totalCost += tempItem.getPrice() * tempItem.getQuantity();
         }
         return totalCost;
@@ -39,12 +41,12 @@ public class Bill extends Inventory {
 
     //Decides whether the items in the inventory can be bought.
     //Postcondition: returns true or false based on whether the items can be bought.
-    //Precondition: list and inventoryList must be occupied.
+    //Precondition: list and super.getList() must be occupied.
     //@param list
     //@return true or false
     public boolean verify(Inventory list) {
         ArrayList<InventoryItem> totalList = list.getList();
-        for (InventoryItem tempItem : inventoryList) {
+        for (InventoryItem tempItem : super.getList()) {
             int counter = totalList.indexOf(tempItem);
             if (counter < 0) {
                 return false;
@@ -58,12 +60,12 @@ public class Bill extends Inventory {
     }
 
     //sellBooks "sells" the inventory items by reducing the quantity of each item IF the list is verified.
-    //Postcondition: reduces quantity of each item in the inventoryList.
-    //Precondition: inventoryList and list must be occupied.
+    //Postcondition: reduces quantity of each item in the super.getList().
+    //Precondition: super.getList() and list must be occupied.
     //@param list
     public void sellBooks(Inventory list) {
         if (verify(list)) {
-            for (InventoryItem tempItem : inventoryList) {
+            for (InventoryItem tempItem : super.getList()) {
                 tempItem.setQuantity(tempItem.getQuantity() - 1);
             }
         }
