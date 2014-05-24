@@ -1,5 +1,7 @@
 package bookstore.GUI;
 
+import bookstore.Inventory;
+import bookstore.InventoryItem;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +19,8 @@ public class sellWindow extends JFrame implements ActionListener {
     private mainGUI root;
     private ArrayList<bookElement> entries = new ArrayList<bookElement>();
     private elementAdder adder;
+    private Integer quantity;
+    
 
     public sellWindow(mainGUI root) {
         this.root = root;
@@ -67,6 +71,26 @@ public class sellWindow extends JFrame implements ActionListener {
             book.update(root.getInventory().getList().toArray());
         }
     }
+    public void sellBooks()
+    {
+        int amount = (int)quantity; 
+        Inventory currentInventory = root.getInventory();
+        for(bookElement temp : entries)
+        {
+            InventoryItem item = currentInventory.get(temp);
+            if(currentInventory.getItemIndex(item)>0)
+            {
+                if(quantity < item.getQuantity())
+                item.setQuantity(item.getQuantity() - quantity);
+            }
+               
+        }
+        root = new mainGUI(currentInventory);
+        update();
+        root.make(currentInventory);
+        
+        
+    }
 
     private class bookElement extends JPanel implements ActionListener {
 
@@ -84,6 +108,7 @@ public class sellWindow extends JFrame implements ActionListener {
             JSpinner amount = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
             amount.setPreferredSize(new Dimension(45, amount.getPreferredSize().height + 4));
             add(amount, hold);
+            quantity = (Integer)amount.getValue();
             hold.gridx = 2;
             JButton close = new JButton("X");
             close.addActionListener(this);
