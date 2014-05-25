@@ -34,11 +34,11 @@ public class passwordWindow {
     passwordField.setAlignmentX(SwingConstants.RIGHT);
     passwordPanel.add(passwordLabel);
     passwordPanel.add(passwordField);
-    JFrame frame = new JFrame();
-    frame.add(passwordPanel);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     int passwordInput = JOptionPane.showConfirmDialog(null, passwordPanel, "Enter your password:" ,JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+    if(passwordInput == JOptionPane.CANCEL_OPTION)
+        System.exit(0);
+    if(passwordInput==JOptionPane.CLOSED_OPTION)
+        System.exit(0);
     char[] password = passwordField.getPassword();
     char[] correctPassword = {'m', 'r', 'w', 'e', 'b', 'b', 'i', 's', 'a','w','e','s','o','m','e'};
     isCorrect = Arrays.equals(correctPassword,password);
