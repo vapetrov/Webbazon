@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  * The main GUI. Renders a window that allows a person to add add and sell
@@ -14,6 +16,7 @@ import javax.swing.*;
  */
 public class mainGUI extends JFrame {
 
+    passwordWindow password;
     Inventory books;
     bookListPanel scroller;
     addWindow adder;
@@ -21,8 +24,8 @@ public class mainGUI extends JFrame {
     bookStatusPanel book;
 
     public mainGUI(Inventory books) {
-
-        
+        password = new passwordWindow();
+        password.showPasswordWindow();
         ImageIcon[] icons = new imageIconLoader().getImages();
         
         setIconImage(icons[5].getImage());
@@ -97,8 +100,7 @@ public class mainGUI extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
-
-    }
+            }
 
     /**
      * Obtains the inventory used by this GUI
