@@ -85,6 +85,16 @@ public class Inventory {
         }
         return null;
     }
+    
+    public InventoryItem getBySellable(Sellable sell){
+        for(InventoryItem temp: items){
+            if(temp.getItem() == sell){
+                return temp;
+            }
+        }
+        return null;
+    }
+    
     public int getItemIndex(Object item)
     {
         int counter = 0;

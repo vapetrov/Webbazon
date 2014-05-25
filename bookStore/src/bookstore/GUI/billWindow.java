@@ -74,6 +74,8 @@ public class billWindow extends JFrame {
         add(total);
         this.setResizable(false);
         pack();
+        setLocationRelativeTo(null);
+
 
     }
 

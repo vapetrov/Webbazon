@@ -1,6 +1,6 @@
 package bookstore.GUI;
 
-import bookstore.Inventory;
+import bookstore.Bill;
 import bookstore.InventoryItem;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -41,7 +41,7 @@ public class sellWindow extends JFrame implements ActionListener {
         buttons.setBorder(BorderFactory.createEmptyBorder(10, 5, 5, 5));
 
         add(buttons);
-        
+
         JPanel cust = new JPanel();
         cust.add(new JLabel("Customer: "));
         cust.add(customer);
@@ -75,26 +75,6 @@ public class sellWindow extends JFrame implements ActionListener {
             book.update(root.getInventory().getList().toArray());
         }
     }
-    public void sellBooks()
-    {
-        int amount = (int)quantity; 
-        Inventory currentInventory = root.getInventory();
-        for(bookElement temp : entries)
-        {
-            InventoryItem item = currentInventory.get(temp);
-            if(currentInventory.getItemIndex(item)>0)
-            {
-                if(quantity < item.getQuantity())
-                item.setQuantity(item.getQuantity() - quantity);
-            }
-               
-        }
-        root = new mainGUI(currentInventory);
-        update();
-        root.make(currentInventory);
-        
-        
-    }
 
     private class seller implements ActionListener {
 
@@ -103,15 +83,29 @@ public class sellWindow extends JFrame implements ActionListener {
             final Bill bill = new Bill(customer.getText());
             for (bookElement entry : entries) {
                 InventoryItem sellItem = new InventoryItem(((InventoryItem) entry.bookList.getSelectedItem()).getItem(), (int) entry.amount.getValue());
-                bill.addItem(sellItem);
+                try{
+                    bill.addItem(sellItem);
+                }catch(IllegalArgumentException ex){
+                    JOptionPane.showMessageDialog(sellWindow.this, "You cannot have more than one entry per book.", "book selling error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
             }
+
+            if (!bill.verify(root.getInventory())) {
+                JOptionPane.showMessageDialog(sellWindow.this, "You cannot sell more books than you Have.", "book selling error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            root.addToTotal(bill.getTotalCopies(), bill.getTotalCost());
+            bill.sellBooks(root.getInventory());
+
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
                     JFrame f = new billWindow(bill);
                     f.setVisible(true);
                 }
             });
-            
+
             clearFields();
             sellWindow.this.setVisible(false);
         }
@@ -135,7 +129,6 @@ public class sellWindow extends JFrame implements ActionListener {
             amount = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
             amount.setPreferredSize(new Dimension(45, amount.getPreferredSize().height + 4));
             add(amount, hold);
-            quantity = (Integer)amount.getValue();
             hold.gridx = 2;
             JButton close = new JButton("X");
             close.addActionListener(this);

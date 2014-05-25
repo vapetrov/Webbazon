@@ -16,9 +16,13 @@ public class bookStatusPanel extends JPanel {
 
     JPanel selectedBook;
     JPanel totalBook;
-
+    int sold;
+    double revenue;
+    
     bookStatusPanel() {
         super();
+        sold = 0;
+        revenue = 0;
         selectedBook = new JPanel();
         totalBook = new JPanel();
         create();
@@ -54,15 +58,17 @@ public class bookStatusPanel extends JPanel {
     }
 
     /**
-     * Sets new values for the amount of books sold and revenue.
+     * Adds amount to the amount of books sold and money taken in.
      *
-     * @param sold Number of books sold.
-     * @param revenue Total amount of money taken in.
+     * @param copies Number of books sold.
+     * @param money Total amount of money taken in.
      */
-    public void updateTotal(int sold, double revenue) {
+    public void addToTotal(int copies, double money) {
+        sold += copies;
+        revenue += money;
         totalBook.removeAll();
         totalBook.add(new JLabel("Books sold: " + sold));
-        totalBook.add(new JLabel("Total Revenue: $" + revenue));
+        totalBook.add(new JLabel("Total Revenue: $" + String.format("%.2f", revenue)));
         updateSize();
     }
 
@@ -87,9 +93,8 @@ public class bookStatusPanel extends JPanel {
         for (Component e : totalBook.getComponents()) {
             ((JComponent) e).setBorder(BorderFactory.createEmptyBorder(1, 5, 1, 5));
         }
-
+        addToTotal(0,0);
         updateItem(null);
-        updateTotal(0, 0.0);
         updateSize();
 
     }

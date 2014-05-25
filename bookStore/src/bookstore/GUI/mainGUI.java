@@ -18,6 +18,7 @@ public class mainGUI extends JFrame {
     bookListPanel scroller;
     addWindow adder;
     sellWindow seller;
+    bookStatusPanel book;
 
     public mainGUI(Inventory books) {
 
@@ -25,7 +26,7 @@ public class mainGUI extends JFrame {
         ImageIcon[] icons = new imageIconLoader().getImages();
         setLocationRelativeTo(null);
         this.books = books;
-        bookStatusPanel book = new bookStatusPanel();
+        book = new bookStatusPanel();
         scroller = new bookListPanel(books, book);
 
         // Window closer
@@ -105,6 +106,14 @@ public class mainGUI extends JFrame {
         return books;
     }
     
+    /**
+     * Adds a number of books and an amount of money to the total books sold.
+     * @param copies number of books
+     * @param money amount of money
+     */
+    public void addToTotal(int copies, double money){
+        book.addToTotal(copies, money);
+    }
   
 
     /**

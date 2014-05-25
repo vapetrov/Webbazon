@@ -5,7 +5,8 @@
  */
 package bookstore;
 
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 
 /**
  *
@@ -17,14 +18,15 @@ public class Bill extends Inventory {
     public final String customer;
 
     /**
-     * Postcondition: a new bill will be created.
-     * Precondition: super.getList() must already be made.
+     * Postcondition: a new bill will be created. Precondition: super.getList()
+     * must already be made.
+     *
      * @param customer Name of the customer.
-     */  
+     */
     public Bill(String customer) {
         super();
         this.customer = customer;
- 
+
     }
 
     //getTotalCost returns the total bill for the customer.
@@ -33,10 +35,22 @@ public class Bill extends Inventory {
     //@return totalCost
     public double getTotalCost() {
         double totalCost = 0;
-        for (InventoryItem tempItem : super.getList()) {
+        for (InventoryItem tempItem : getList()) {
             totalCost += tempItem.getPrice() * tempItem.getQuantity();
         }
         return totalCost;
+    }
+    
+    /**
+     * Calculates the total number of copies of books sold in this bill
+     * @return number of books sold
+     */
+    public int getTotalCopies(){
+        int copies = 0;
+        for(InventoryItem item : getList()){
+            copies += item.getQuantity();
+        }
+        return copies;
     }
 
     //Decides whether the items in the inventory can be bought.
@@ -45,14 +59,13 @@ public class Bill extends Inventory {
     //@param list
     //@return true or false
     public boolean verify(Inventory list) {
-        ArrayList<InventoryItem> totalList = list.getList();
-        for (InventoryItem tempItem : super.getList()) {
-            int counter = totalList.indexOf(tempItem);
-            if (counter < 0) {
-                return false;
+        
+        for (InventoryItem tempItem : getList()) {
+            if(list.getBySellable(tempItem.getItem()) == null){
+                throw new IllegalArgumentException("Item '"+tempItem+"' not available");
             }
-            InventoryItem testItem = totalList.get(counter);
-            if (tempItem.getQuantity() > testItem.getQuantity()) {
+            InventoryItem main = list.getBySellable(tempItem.getItem());
+            if(main.getQuantity() < tempItem.getQuantity()){
                 return false;
             }
         }
@@ -65,8 +78,11 @@ public class Bill extends Inventory {
     //@param list
     public void sellBooks(Inventory list) {
         if (verify(list)) {
-            for (InventoryItem tempItem : super.getList()) {
-                tempItem.setQuantity(tempItem.getQuantity() - 1);
+            for (InventoryItem tempItem : getList()) {
+                
+                    InventoryItem main = list.getBySellable(tempItem.getItem());
+                    main.setQuantity(main.getQuantity() - tempItem.getQuantity());
+             
             }
         }
     }
