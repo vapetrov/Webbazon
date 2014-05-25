@@ -24,6 +24,9 @@ public class mainGUI extends JFrame {
 
         
         ImageIcon[] icons = new imageIconLoader().getImages();
+        
+        setIconImage(icons[5].getImage());
+        
         setLocationRelativeTo(null);
         this.books = books;
         book = new bookStatusPanel();
