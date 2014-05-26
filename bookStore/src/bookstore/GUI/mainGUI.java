@@ -26,6 +26,7 @@ public class mainGUI extends JFrame {
     public mainGUI(Inventory books) {
         password = new passwordWindow();
         password.showPasswordWindow();
+        
         ImageIcon[] icons = new imageIconLoader().getImages();
         
         setIconImage(icons[5].getImage());
@@ -69,6 +70,8 @@ public class mainGUI extends JFrame {
         inventory.setIcon(icons[0]);
         inventory.setMargin(new Insets(5, 5, 5, 5));
         buttonRow.add(inventory);
+        
+        
 
         // adds inventory sub-menu. Only 1 is ever created.
         inventory.addActionListener(inventoryWindow.make(this));
@@ -92,6 +95,14 @@ public class mainGUI extends JFrame {
 
         seller = new sellWindow(this);
         sell.addActionListener(seller);
+        
+       buttonRow.add(Box.createRigidArea(new Dimension(20, 0)));
+        
+        JButton open = new JButton("Open Save Directory");
+        FileChooser chooser = new FileChooser();
+        open.setMargin(new Insets(5, 5, 5, 5));
+        open.addActionListener(chooser);
+        buttonRow.add(open);
         
         buttonRow.add(Box.createRigidArea(new Dimension(20, 0)));
 
