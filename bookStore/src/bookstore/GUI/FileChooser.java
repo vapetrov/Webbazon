@@ -19,7 +19,9 @@ import javax.swing.JOptionPane;
  * @author Jagjit
  */
 public class FileChooser implements ActionListener {
- 
+   //If button is clicked, file directory will open and allow user to retrieve file.
+   //Postcondition: 
+   //Precondition:Open button must be clicked and user select a file (or close file opener)
    public void actionPerformed(ActionEvent e) {
      
        JPanel panel = new JPanel();
