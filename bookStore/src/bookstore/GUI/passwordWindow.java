@@ -40,7 +40,7 @@ public class passwordWindow {
     if(passwordInput==JOptionPane.CLOSED_OPTION)
         System.exit(0);
     char[] password = passwordField.getPassword();
-    char[] correctPassword = {'m', 'r', 'w', 'e', 'b', 'b', 'i', 's', 'a','w','e','s','o','m','e'};
+    char[] correctPassword = {'a', 'p', 'c', 's', 'i', 's', 'f', 'u', 'n'};
     isCorrect = Arrays.equals(correctPassword,password);
     if(!isCorrect()){
               int dialogButton = JOptionPane.YES_NO_OPTION;
