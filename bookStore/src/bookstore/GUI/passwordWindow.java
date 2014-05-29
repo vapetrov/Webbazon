@@ -1,4 +1,3 @@
-
 package bookstore.GUI;
 
 import javax.swing.JPasswordField;
@@ -38,7 +37,7 @@ public class passwordWindow {
             System.exit(0);
         }
         char[] password = passwordField.getPassword();
-        char[] correctPassword = {'m', 'r', 'w', 'e', 'b', 'b', 'i', 's', 'a', 'w', 'e', 's', 'o', 'm', 'e'};
+        char[] correctPassword = {'a', 'p', 'c', 's', 'i', 's', 'f', 'u', 'n'};
         isCorrect = Arrays.equals(correctPassword, password);
         if (!isCorrect()) {
             int dialogButton = JOptionPane.YES_NO_OPTION;
@@ -49,8 +48,8 @@ public class passwordWindow {
             if (dialogResult == JOptionPane.NO_OPTION) {
                 System.exit(0);
             }
-        }
 
+        }
     }
 
     public boolean isCorrect() {
