@@ -55,4 +55,21 @@ public class Book implements Sellable {
 
     }
 
+    @Override
+    public boolean equals(Object o){
+        
+        Book item = null;
+        try {
+            item = (Book) o;
+        } catch (ClassCastException ex) {
+            return false;
+        }
+        
+        return item.getID() == ISBN &&
+               item.getCreator() == AUTHOR &&
+               item.getName() == TITLE &&
+               item.getPrice() == cost ;
+        
+    }
+    
 }

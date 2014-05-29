@@ -12,10 +12,11 @@ public class InventoryItem {
     //Precondition: As of now (or until Webbazon decides to sell another item) constructor parameters must contain a book. 
     //@param (Book) book
     public InventoryItem(Sellable item, int quantity) {
-        
-        if(quantity <= 0)
+
+        if (quantity <= 0) {
             throw new IllegalArgumentException("quantity has to be more than 0");
-        
+        }
+
         this.item = item;
         this.quantity = quantity;
     }
@@ -65,4 +66,18 @@ public class InventoryItem {
         return item.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        InventoryItem item = null;
+        try {
+            item = (InventoryItem) o;
+        } catch (ClassCastException ex) {
+            return false;
+        }
+        System.out.println(item.getItem().equals(this.item));
+        if (item.getItem().equals(this.item) && item.getQuantity() == quantity) {
+            return true;
+        }
+        return false;
+    }
 }

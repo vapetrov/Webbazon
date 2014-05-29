@@ -95,17 +95,7 @@ public class Inventory {
         return null;
     }
     
-    public int getItemIndex(Object item)
-    {
-        int counter = 0;
-        while(counter<items.size())
-        {
-            if(item.equals(items.get(counter)))
-                return counter;
-            counter++;
-        }
-        return -1;
-    }
+
 
     public void addNewBook(double cost, String isbn, String author, String title, int quantity) {
 
