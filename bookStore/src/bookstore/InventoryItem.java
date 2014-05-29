@@ -74,7 +74,6 @@ public class InventoryItem {
         } catch (ClassCastException ex) {
             return false;
         }
-        System.out.println(item.getItem().equals(this.item));
         if (item.getItem().equals(this.item) && item.getQuantity() == quantity) {
             return true;
         }
