@@ -151,6 +151,12 @@ public class addWindow extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        if(root.getInventory().getList().isEmpty()){
+            JOptionPane.showMessageDialog(addWindow.this,"Add to the inventory first.","book error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         clearFields();
         setVisible(true);
     }

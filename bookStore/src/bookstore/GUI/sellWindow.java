@@ -83,9 +83,9 @@ public class sellWindow extends JFrame implements ActionListener {
             final Bill bill = new Bill(customer.getText());
             for (bookElement entry : entries) {
                 InventoryItem sellItem = new InventoryItem(((InventoryItem) entry.bookList.getSelectedItem()).getItem(), (int) entry.amount.getValue());
-                try{
+                try {
                     bill.addItem(sellItem);
-                }catch(IllegalArgumentException ex){
+                } catch (IllegalArgumentException ex) {
                     JOptionPane.showMessageDialog(sellWindow.this, "You cannot have more than one entry per book.", "book selling error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
@@ -194,6 +194,12 @@ public class sellWindow extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if (root.getInventory().getList().isEmpty()) {
+            JOptionPane.showMessageDialog(sellWindow.this, "Add to the inventory first.", "book error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         clearFields();
         setVisible(true);
     }

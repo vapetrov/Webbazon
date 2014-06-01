@@ -72,9 +72,6 @@ public class Inventory {
     //@return ArrayList<InventoryItem> items.
     public ArrayList<InventoryItem> getList() {
         //Checks to make sure that items is not empty.
-        if (items.get(0) == null) {
-            System.out.println("Items list is empty. Please try again!");
-        }
         return items;
 
     }
