@@ -16,7 +16,6 @@ import javax.swing.JPanel;
  */
 public class mainGUI extends JFrame {
 
-    passwordWindow password;
     Inventory books;
     bookListPanel scroller;
     addWindow adder;
@@ -24,13 +23,13 @@ public class mainGUI extends JFrame {
     bookStatusPanel book;
 
     public mainGUI(Inventory books) {
-        password = new passwordWindow();
-        password.showPasswordWindow();
         
+        
+
         ImageIcon[] icons = new imageIconLoader().getImages();
-        
+
         setIconImage(icons[5].getImage());
-        
+
         setLocationRelativeTo(null);
         this.books = books;
         book = new bookStatusPanel();
@@ -43,10 +42,8 @@ public class mainGUI extends JFrame {
             }
         });
 
-        //this.setMinimumSize(new Dimension(457,444));
+        this.setMinimumSize(new Dimension(575,400));
         setTitle("Webbazon Bookstore");
-
-        
 
         JPanel horizontal = new JPanel();
         horizontal.setLayout(new BoxLayout(horizontal, BoxLayout.Y_AXIS));
@@ -70,8 +67,6 @@ public class mainGUI extends JFrame {
         inventory.setIcon(icons[0]);
         inventory.setMargin(new Insets(5, 5, 5, 5));
         buttonRow.add(inventory);
-        
-        
 
         // adds inventory sub-menu. Only 1 is ever created.
         inventory.addActionListener(inventoryWindow.make(this));
@@ -95,15 +90,26 @@ public class mainGUI extends JFrame {
 
         seller = new sellWindow(this);
         sell.addActionListener(seller);
+
+        buttonRow.add(Box.createRigidArea(new Dimension(20, 0)));
+
+        /*
+         JButton open = new JButton("Open Save Directory");
+         FileChooser chooser = new FileChooser();
+         open.setMargin(new Insets(5, 5, 5, 5));
+         open.addActionListener(chooser);
+         buttonRow.add(open);
         
-       buttonRow.add(Box.createRigidArea(new Dimension(20, 0)));
+         buttonRow.add(Box.createRigidArea(new Dimension(20, 0)));
+
+         */
         
-        JButton open = new JButton("Open Save Directory");
-        FileChooser chooser = new FileChooser();
-        open.setMargin(new Insets(5, 5, 5, 5));
-        open.addActionListener(chooser);
-        buttonRow.add(open);
-        
+        JButton lock = new JButton("Lock");
+        lock.setIcon(icons[6]);
+        lock.setMargin(new Insets(5, 5, 5, 5));
+        lock.addActionListener(new passwordWindow(this));
+        buttonRow.add(lock);
+
         buttonRow.add(Box.createRigidArea(new Dimension(20, 0)));
 
         horizontal.add(scroller.getScroller());
@@ -111,7 +117,7 @@ public class mainGUI extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
-            }
+    }
 
     /**
      * Obtains the inventory used by this GUI
@@ -121,16 +127,16 @@ public class mainGUI extends JFrame {
     public Inventory getInventory() {
         return books;
     }
-    
+
     /**
      * Adds a number of books and an amount of money to the total books sold.
+     *
      * @param copies number of books
      * @param money amount of money
      */
-    public void addToTotal(int copies, double money){
+    public void addToTotal(int copies, double money) {
         book.addToTotal(copies, money);
     }
-  
 
     /**
      * Updates the list of books to reflect the state of the Inventory.

@@ -68,6 +68,11 @@ public class InventoryItem {
 
     @Override
     public boolean equals(Object o) {
+        
+        if(o == null){
+            return false;
+        }
+        
         InventoryItem item = null;
         try {
             item = (InventoryItem) o;

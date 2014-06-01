@@ -8,17 +8,25 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.Arrays;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.SwingConstants;
 
 /**
  *
  * @author Jagjit
  */
-public class passwordWindow {
+public class passwordWindow implements ActionListener {
 
     ImageIcon[] icons = new imageIconLoader().getImages();
     private boolean isCorrect;
-
+    mainGUI root;
+    
+    public passwordWindow(mainGUI root){
+        this.root = root;
+    }
+    
+    
     public void showPasswordWindow() {
         JPanel passwordPanel = new JPanel(new GridLayout(3, 3));
         JLabel mainIcon = new JLabel(icons[4]);
@@ -58,5 +66,12 @@ public class passwordWindow {
 
     public void close() {
         System.exit(0);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        root.setVisible(false);
+        showPasswordWindow();
+        root.setVisible(true);
     }
 }

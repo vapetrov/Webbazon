@@ -58,6 +58,10 @@ public class Book implements Sellable {
     @Override
     public boolean equals(Object o){
         
+        if(o == null){
+            return false;
+        }
+        
         Book item = null;
         try {
             item = (Book) o;
