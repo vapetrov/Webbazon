@@ -201,6 +201,7 @@ public class sellWindow extends JFrame implements ActionListener {
         }
 
         clearFields();
+        pack();
         setVisible(true);
     }
 

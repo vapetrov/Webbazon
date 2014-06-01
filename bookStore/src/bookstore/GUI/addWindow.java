@@ -82,6 +82,7 @@ public class addWindow extends JFrame implements ActionListener {
         for (Object i : root.getInventory().getList()) {
             books.addItem(i);
         }
+        pack();
     }
 
     private void closeWindow() {
@@ -158,6 +159,7 @@ public class addWindow extends JFrame implements ActionListener {
         }
         
         clearFields();
+        pack();
         setVisible(true);
     }
 
