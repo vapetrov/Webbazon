@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bookstore;
 
-import java.util.Collection;
-import java.util.HashSet;
-
 /**
+ * A bill is used for storing inventorItems that will be sold from a main
+ * inventory
  *
  * @author Jagjit
  */
@@ -29,10 +23,12 @@ public class Bill extends Inventory {
 
     }
 
-    //getTotalCost returns the total bill for the customer.
-    //Postcondition: totalCost is returned
-    //Precondition: super.getList() must be occupied.
-    //@return totalCost
+    /**
+     * returns the total bill for the customer. Postcondition: totalCost is
+     * returned Precondition: super.getList() must be occupied.
+     *
+     * @return totalCost
+     */
     public double getTotalCost() {
         double totalCost = 0;
         for (InventoryItem tempItem : getList()) {
@@ -40,49 +36,55 @@ public class Bill extends Inventory {
         }
         return totalCost;
     }
-    
+
     /**
      * Calculates the total number of copies of books sold in this bill
+     *
      * @return number of books sold
      */
-    public int getTotalCopies(){
+    public int getTotalCopies() {
         int copies = 0;
-        for(InventoryItem item : getList()){
+        for (InventoryItem item : getList()) {
             copies += item.getQuantity();
         }
         return copies;
     }
 
-    //Decides whether the items in the inventory can be bought.
-    //Postcondition: returns true or false based on whether the items can be bought.
-    //Precondition: list and super.getList() must be occupied.
-    //@param list
-    //@return true or false
+    /**
+     * Decides whether the items in the inventory can be bought. Postcondition:
+     * returns true or false based on whether the items can be bought.
+     * Precondition: list and super.getList() must be occupied.
+     *
+     * @param list
+     * @return true or false
+     */
     public boolean verify(Inventory list) {
-        
+
         for (InventoryItem tempItem : getList()) {
-            if(list.getBySellable(tempItem.getItem()) == null){
-                throw new IllegalArgumentException("Item '"+tempItem+"' not available");
+            if (list.getBySellable(tempItem.getItem()) == null) {
+                throw new IllegalArgumentException("Item '" + tempItem + "' not available");
             }
             InventoryItem main = list.getBySellable(tempItem.getItem());
-            if(main.getQuantity() < tempItem.getQuantity()){
+            if (main.getQuantity() < tempItem.getQuantity()) {
                 return false;
             }
         }
         return true;
     }
 
-    //sellBooks "sells" the inventory items by reducing the quantity of each item IF the list is verified.
-    //Postcondition: reduces quantity of each item in the super.getList().
-    //Precondition: super.getList() and list must be occupied.
-    //@param list
+    /**
+     * "sells" the inventory items by reducing the quantity of each item IF the
+     * list is verified. //Postcondition: reduces quantity of each item in the
+     * super.getList(). //Precondition: super.getList() and list must be
+     * occupied. //@param list
+     */
     public void sellBooks(Inventory list) {
         if (verify(list)) {
             for (InventoryItem tempItem : getList()) {
-                
-                    InventoryItem main = list.getBySellable(tempItem.getItem());
-                    main.setQuantity(main.getQuantity() - tempItem.getQuantity());
-             
+
+                InventoryItem main = list.getBySellable(tempItem.getItem());
+                main.setQuantity(main.getQuantity() - tempItem.getQuantity());
+
             }
         }
     }

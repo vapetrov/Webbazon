@@ -1,21 +1,18 @@
-  /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bookstore;
 
-import bookstore.GUI.billWindow;
 import bookstore.GUI.mainGUI;
 
 /**
- *
+ * A bookStore is an intuitive way for a bookStore owner to buy and sell books.
+ * Powered by Webbazon!
+ * 
  * @author Vassily and Jajgit
  */
 public class BookStore {
 
     /**
-     * This is the runner class. Later it will become the GUI.
+     * This is the runner class. It creates and runs the main GUI.
      *
      *
      * @param args the command line arguments

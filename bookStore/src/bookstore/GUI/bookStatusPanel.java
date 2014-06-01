@@ -28,15 +28,7 @@ public class bookStatusPanel extends JPanel {
         create();
     }
 
-    /*
-    
-     TODO: Dummy data should be replaced with methods that will update Information to show.
-     Method must call updateSize() Afterwards!!
-    
-     Methods:
-     updateItem(IventoryItem)
-     updateTotal(int soldItems, int totalMoney)
-     */
+
     public void updateItem(InventoryItem item) {
 
         selectedBook.removeAll();

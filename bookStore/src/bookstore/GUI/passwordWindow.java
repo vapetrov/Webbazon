@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 import javax.swing.SwingConstants;
 
 /**
- *
+ * A passwordWindow locks the user out of the system until they enter the correct password.
  * @author Jagjit
  */
 public class passwordWindow implements ActionListener {
