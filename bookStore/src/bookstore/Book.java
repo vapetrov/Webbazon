@@ -29,6 +29,7 @@ public class Book implements Sellable {
         TITLE = title;
     }
 
+
     public double getPrice() {
         return cost;
     }
@@ -49,12 +50,22 @@ public class Book implements Sellable {
         return AUTHOR;
     }
 
+    
+    /**
+     * Formats the Object into a comprehensible string.
+     * @return String representing object
+     */
     @Override
     public String toString() {
         return TITLE + " by: " + AUTHOR;
 
     }
 
+    /**
+     * Compares the object to another one to see if they contain the same data.
+     * @param o Object to compare.
+     * @return True if they are equal, otherwise false.
+     */
     @Override
     public boolean equals(Object o){
         
