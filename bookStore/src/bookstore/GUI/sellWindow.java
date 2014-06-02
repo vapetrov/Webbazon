@@ -82,7 +82,7 @@ public class sellWindow extends JFrame implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             final Bill bill = new Bill(customer.getText());
             for (bookElement entry : entries) {
-                InventoryItem sellItem = new InventoryItem(((InventoryItem) entry.bookList.getSelectedItem()).getItem(), (int) entry.amount.getValue());
+                InventoryItem sellItem = new InventoryItem(((InventoryItem) entry.bookList.getSelectedItem()).getItem(), (Integer) entry.amount.getValue());
                 try {
                     bill.addItem(sellItem);
                 } catch (IllegalArgumentException ex) {
