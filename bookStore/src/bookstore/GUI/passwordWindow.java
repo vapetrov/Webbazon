@@ -32,12 +32,12 @@ public class passwordWindow implements ActionListener {
         JLabel mainIcon = new JLabel(icons[4]);
         mainIcon.setAlignmentX(Component.CENTER_ALIGNMENT);
         passwordPanel.add(mainIcon);
-        JLabel passwordLabel = new JLabel("Password:");
+        JLabel passwordLabel = new JLabel("Password: (Hint: its 'bookstore')");
         JPasswordField passwordField = new JPasswordField();
         passwordField.setAlignmentX(SwingConstants.RIGHT);
         passwordPanel.add(passwordLabel);
         passwordPanel.add(passwordField);
-        int passwordInput = JOptionPane.showConfirmDialog(null, passwordPanel, "Enter your password:", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        int passwordInput = JOptionPane.showConfirmDialog(null, passwordPanel, "Enter your password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (passwordInput == JOptionPane.CANCEL_OPTION) {
             System.exit(0);
         }
@@ -45,7 +45,7 @@ public class passwordWindow implements ActionListener {
             System.exit(0);
         }
         char[] password = passwordField.getPassword();
-        char[] correctPassword = {'a', 'p', 'c', 's', 'i', 's', 'f', 'u', 'n'};
+        char[] correctPassword = {'b', 'o', 'o', 'k', 's', 't', 'o', 'r', 'e'};
         isCorrect = Arrays.equals(correctPassword, password);
         if (!isCorrect()) {
             int dialogButton = JOptionPane.YES_NO_OPTION;
